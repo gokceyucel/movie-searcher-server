@@ -1,6 +1,7 @@
 import { Router } from 'express';
 const search = Router();
 import axios from 'axios';
+import cache from 'memory-cache';
 
 export default ({ config, db }) => {
 
@@ -41,7 +42,18 @@ export default ({ config, db }) => {
 
 		try {
 			const keyword = req.query.keyword;
+
+			// TODO: move cache mechanism elsewhere https://medium.com/the-node-js-collection/simple-server-side-cache-for-express-js-with-node-js-45ff296ca0f0
+			const cachedResponse = cache.get(keyword);
+			if (cachedResponse) {
+				return res.json(cachedResponse);
+			}
+
 			const response = await get20movies(keyword);
+			res.setHeader('Cache-Control', 'private, max-age=2592000000');
+			
+			cache.put(keyword, response);
+
 			res.json(response);
 		} catch (error) {
 			res.json("error occured");
