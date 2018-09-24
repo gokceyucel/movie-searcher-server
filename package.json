@@ -5,6 +5,7 @@
   "main": "dist",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
+    "debug": "nodemon --inspect -w src --exec \"babel-node src --presets es2015,stage-0\"",
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
     "prestart": "npm run -s build",
@@ -31,11 +32,13 @@
   "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "morgan": "^1.8.0",
+    "request": "^2.88.0",
     "resource-router-middleware": "^0.6.0"
   },
   "devDependencies": {
