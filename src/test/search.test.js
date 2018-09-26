@@ -1,6 +1,7 @@
 import app from '../index';
 import chai from 'chai';
 import request from 'supertest';
+import parallel from 'async.parallel';
 
 const expect = chai.expect;
 
@@ -27,6 +28,27 @@ describe('Search movie API Integration Tests', () => {
           expect(res.body).to.be.an('array');
           done();
         });
+    });
+
+    it('should get 20 movies', (done) => {
+      request(app)
+        .get('/api/search?keyword=future')
+        .end((err, res) => {
+          expect(res.body).to.have.lengthOf(20);
+          done();
+        });
+    });
+
+    it('should respond efficiently to concurrent requests (async.parallel)', (done) => {
+      parallel([
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
+        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb)
+      ], done);
     });
   });
 });

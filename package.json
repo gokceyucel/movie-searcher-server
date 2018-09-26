@@ -10,7 +10,7 @@
     "start": "node dist",
     "prestart": "npm run -s build",
     "lint": "eslint src",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register \"./src/test/*.test.js*\""
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register \"./src/test/*.test.js*\" --exit"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -45,6 +45,7 @@
     "resource-router-middleware": "^0.6.0"
   },
   "devDependencies": {
+    "async.parallel": "^0.5.2",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^10.0.0",
