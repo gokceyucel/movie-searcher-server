@@ -20,7 +20,7 @@ export default ({ config, db }) => {
 				// TODO: do a better error handling. Not returning any response in case of an error.
 				console.error(error);
 			}
-		}
+		};
 
 		const get20movies = async keyword => {
 			try {
@@ -34,7 +34,7 @@ export default ({ config, db }) => {
 			} catch(error) {
 				console.error(error);
 			}
-		}
+		};
 
 		try {
 			const keyword = req.query.keyword;
@@ -54,7 +54,7 @@ export default ({ config, db }) => {
 		} catch (error) {
 			res.json("error occured");
 		}
-	})
+	});
 
 	return search;
 };
