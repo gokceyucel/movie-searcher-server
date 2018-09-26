@@ -5,10 +5,6 @@ import cache from 'memory-cache';
 
 export default ({ config, db }) => {
 
-	search.get('/hede', (req, res) => {
-			res.json("hedeeeee");
-	});
-
 	search.get('/', async (req, res) => {
 
 		// TODO: move this elsewhere. Maybe to a service.
@@ -50,7 +46,7 @@ export default ({ config, db }) => {
 			}
 
 			const response = await get20movies(keyword);
-			res.setHeader('Cache-Control', 'private, max-age=2592000000');
+			// res.setHeader('Cache-Control', 'private, max-age=2592000000');
 			
 			cache.put(keyword, response);
 
