@@ -21,14 +21,14 @@ const getMoreMovies = async (keyword = 'godfather') => {
     const totalMoviesCount = movies.totalResults;
     
     if (totalMoviesCount > 10) {
-      const moviesPage2 = await getMovies(keyword, 2);
-      const movies20 = [ ...movies.Search, ...moviesPage2.Search ];
+      const moreMovies = await getMovies(keyword, 2);
+      const movies20 = movies.Search.concat(moreMovies.Search);
       return movies20;
     }
 
     return movies;
   } catch (error) {
-    console.error(error);
+    return console.error(error);
   }
 };
 

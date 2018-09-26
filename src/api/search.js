@@ -1,27 +1,19 @@
 import { Router } from 'express';
 const search = Router();
-import cache from 'memory-cache';
+import cache from '../middleware/cache';
 import { getMoreMovies } from '../service/searchService';
 
-export default ({ config, db }) => {
+export default ({ config }) => {
 
-	search.get('/', async (req, res) => {
+	search.get('/', cache, async (req, res) => {
 
 		try {
 			const keyword = req.query.keyword;
-
-			// TODO: move cache mechanism elsewhere https://medium.com/the-node-js-collection/simple-server-side-cache-for-express-js-with-node-js-45ff296ca0f0
-			const cachedResponse = cache.get(keyword);
-			if (cachedResponse) {
-				return res.json(cachedResponse);
-			}
-
 			const response = await getMoreMovies(keyword);
 
+			// Move elsewhere
 			res.setHeader('Cache-Control', 'private, max-age=30');
 			
-			cache.put(keyword, response);
-
 			res.json(response);
 		} catch (error) {
 			console.error(error);

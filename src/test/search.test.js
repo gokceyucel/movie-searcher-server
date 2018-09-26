@@ -39,7 +39,7 @@ describe('Search movie API Integration Tests', () => {
         });
     });
 
-    it('should respond efficiently to concurrent requests (async.parallel)', (done) => {
+    it('should respond efficiently to concurrent requests', (done) => {
       parallel([
         (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
         (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
@@ -49,6 +49,6 @@ describe('Search movie API Integration Tests', () => {
         (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
         (cb) => request(app).get('/api/search?keyword=future').expect(200, cb)
       ], done);
-    });
+    }).timeout(50);
   });
 });
