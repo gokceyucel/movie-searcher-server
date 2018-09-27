@@ -15,6 +15,7 @@ const getMovies = async (keyword = 'future', page = 1) => {
   }
 };
 
+// FUNCTIONAL_REQUIREMENT_BACKEND_2
 const getMoreMovies = async (keyword = 'godfather') => {
   try {
     const movies = await getMovies(keyword);
