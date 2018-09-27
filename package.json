@@ -1,8 +1,7 @@
 {
-  "name": "express-es6-rest-api",
-  "version": "0.3.0",
-  "description": "Starter project for an ES6 RESTful Express API",
-  "main": "dist",
+  "name": "movies-searcher-server",
+  "version": "0.1.0",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon -w src --exec babel-node ./src",
     "debug": "nodemon --inspect -w src --exec \"babel-node src --presets es2015,stage-0\"",
@@ -12,25 +11,10 @@
     "lint": "eslint src",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register \"./src/test/*.test.js*\" --exit"
   },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": 7,
-      "sourceType": "module"
-    },
-    "env": {
-      "node": true
-    },
-    "rules": {
-      "no-console": 0,
-      "no-unused-vars": 1
-    }
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/developit/express-es6-rest-api.git"
+    "url": "git@github.com:gokceyucel/movie-searcher-server.git"
   },
-  "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
@@ -56,9 +40,5 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.9.2",
     "supertest": "^3.3.0"
-  },
-  "bugs": {
-    "url": "https://github.com/developit/express-es6-rest-api/issues"
-  },
-  "homepage": "https://github.com/developit/express-es6-rest-api#readme"
+  }
 }
