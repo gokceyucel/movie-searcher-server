@@ -1,13 +1,11 @@
 import { Router } from 'express';
-const search = Router();
-import cache from '../middleware/cache';
+const searchRouter = Router();
 import { getMoreMovies } from '../service/searchService';
 
-export default ({ config }) => {
-
+export default ({ cache }) => {
 	// FUNCTIONAL_REQUIREMENT_BACKEND_1
 	// FUNCTIONAL_REQUIREMENT_BACKEND_4
-	search.get('/', cache, async (req, res) => {
+	searchRouter.get('/', cache.cache, async (req, res) => {
 
 		try {
 			const keyword = req.query.keyword;
@@ -18,9 +16,9 @@ export default ({ config }) => {
 			res.json(response);
 		} catch (error) {
 			console.error(error);
-			res.status(500).json({ message: 'An error occured', error });
+			res.status(500).send({ message: 'An error occured', error });
 		}
 	});
 
-	return search;
+	return searchRouter;
 };

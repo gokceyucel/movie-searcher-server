@@ -1,6 +1,5 @@
 import axios from 'axios';
 import config from '../config.json';
-
 const { apiScheme, apiUrl, apiKey } = config;
 
 const getMovies = async (keyword = 'future', page = 1) => {

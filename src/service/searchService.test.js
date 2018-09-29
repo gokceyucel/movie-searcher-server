@@ -1,7 +1,7 @@
 import app from '../index';
 import chai from 'chai';
 import request from 'supertest';
-import parallel from 'async.parallel';
+import times from 'async.times';
 
 const expect = chai.expect;
 
@@ -40,15 +40,15 @@ describe('Search movie API Integration Tests', () => {
     });
 
     it('should respond efficiently to concurrent requests', (done) => {
-      parallel([
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb),
-        (cb) => request(app).get('/api/search?keyword=future').expect(200, cb)
-      ], done);
-    }).timeout(50);
+      times(
+        10,
+        (n, next) => {
+          request(app)
+            .get('/api/search?keyword=future')
+            .expect(200, next)
+        },
+        done
+      );
+    }).timeout(20);
   });
 });
