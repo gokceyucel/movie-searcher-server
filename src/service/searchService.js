@@ -6,7 +6,7 @@ const { apiScheme, apiUrl, apiKey } = config;
 const getMovies = async (keyword = 'future', page = 1) => {
   try {
     const pageNumber = page;
-    const requestUrl = `${apiScheme}://${apiUrl}/?apikey=${apiKey}&s=${keyword}&page=${pageNumber}`;
+    const requestUrl = `${apiScheme}://${apiUrl}/?apikey=${apiKey}&s=${keyword}&page=${pageNumber}&type=movie`;
     const response = await axios.get(requestUrl);
     const movies = response.data;
     return movies;

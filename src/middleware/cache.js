@@ -13,7 +13,7 @@ export default (req, res, next) => {
     res.json = (body) => {
       mcache.put(key, body);
       res.sendResponse(body);
-    }
+    };
     next();
   }
 };
