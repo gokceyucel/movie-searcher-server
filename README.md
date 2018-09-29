@@ -54,3 +54,9 @@ curl "http://127.0.0.1:8080/api/search?keyword=future"
 > [{"Title":"Back to the Future","Year":"1985","imdbID":"tt0088763","Type":"movie","Poster":"https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"}
 ...]
 ```
+- GET /api/cache/refresh
+```sh
+curl "http://127.0.0.1:8080/api/cache/refresh"
+> Cache refreshed
+```
+

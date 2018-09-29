@@ -45,7 +45,7 @@ describe('Search movie API Integration Tests', () => {
         (n, next) => {
           request(app)
             .get('/api/search?keyword=future')
-            .expect(200, next)
+            .expect(200, next);
         },
         done
       );

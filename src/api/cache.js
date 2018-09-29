@@ -1,10 +1,12 @@
 import { Router } from 'express';
 const cacheRouter = Router();
-import { getKeywordFromAddress, cacheKeyGeneratorFromUrl } from '../lib/util';
+import { getKeywordFromAddress } from '../lib/util';
 import { getMoreMovies } from '../service/searchService';
 
 export default ({ cache }) => {
-  cacheRouter.get('/', (req, res) => {
+  cacheRouter.get('/refresh', (req, res) => {
+
+    // FUNCTIONAL_REQUIREMENT_BACKEND_7i
     cache.instance
       .keys()
       .map(key => {
